@@ -16,25 +16,38 @@ class Selector
 
     /**
      * Create a new Selector
+     *
      * @param String $file
      */
     public function __construct($file)
     {
         $this->file = $file;
         $this->data = simplexml_load_file($file);
-
         if (!$this->data)
-            print_r('<h3> <strong><u>EasyXML Error:</u></strong> XML file was not found! </h3>');
+            self::prettyError('XML file was not found!');
+    }
+
+    /**
+     * Prints a 'pretty' error
+     *
+     * @param String $message
+     */
+    public static function prettyError($message)
+    {
+        print_r('<h3> <strong><u>EasyXML Error:</u></strong> ' . $message . '</h3>');
     }
 
     /**
      * Count the node of the file loaded
+     *
      * @param String $element
      */
-    public function countElement($element) {
-        $dom = new DOMDocument;
-        $dom->loadXml($this->data);
-        return $dom->getElementsByTagName($element)->length;
+    public function countElement($element)
+    {
+        if (is_string($element))
+            return count($this->data->$element);
+        else
+            return self::prettyError('Element given is not a String!');
     }
 
 }

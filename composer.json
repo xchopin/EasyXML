@@ -11,12 +11,12 @@
       "homepage": "https://github.com/xchopin"
     }
   ],
+  "require-dev": {
+    "phpunit/phpunit": "^4.0"
+  },
   "autoload": {
     "psr-4": {
-      "Chopin\\EasyXML\\": ""
+      "Chopin\\EasyXML\\": "src"
     }
-  },
-  "require": {
-    "psr/http-message": "^1.0"
   }
 }

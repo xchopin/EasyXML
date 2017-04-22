@@ -1,0 +1,22 @@
+{
+  "name": "chopin/easyxml",
+  "description": "An efficient XML Selector",
+  "keywords": ["xml", "dom", "selector", "tool", "read", "easy"],
+  "homepage": "https://github.com/xchopin/EasyXML",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Xavier Chopin",
+      "email": "bonjour@xavierchop.in",
+      "homepage": "https://github.com/xchopin"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Chopin\\EasyXML\\": ""
+    }
+  },
+  "require": {
+    "psr/http-message": "^1.0"
+  }
+}

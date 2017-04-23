@@ -21,6 +21,16 @@ class Selector
      */
     public function __construct($file)
     {
+        $this->load($file);
+    }
+
+    /**
+     * Load a XML File
+     *
+     * @param String $file
+     */
+    public function load($file)
+    {
         $this->file = $file;
         $this->data = simplexml_load_file($file);
         if (!$this->data)
@@ -49,5 +59,7 @@ class Selector
         else
             return self::prettyError('Element given is not a String!');
     }
+
+
 
 }

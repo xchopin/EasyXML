@@ -17,7 +17,7 @@ class Selector
     /**
      * Create a new Selector
      *
-     * @param String $file
+     * @param string $file
      */
     public function __construct($file)
     {
@@ -27,7 +27,7 @@ class Selector
     /**
      * Load a XML File
      *
-     * @param String $file
+     * @param string $file
      */
     public function load($file)
     {
@@ -40,7 +40,7 @@ class Selector
     /**
      * Prints a 'pretty' error
      *
-     * @param String $message
+     * @param string $message
      */
     public static function prettyError($message)
     {
@@ -50,7 +50,8 @@ class Selector
     /**
      * Count the nodes of the file loaded or the node given
      *
-     * @param String $element
+     * @param string $element
+     * @return int $count
      */
     public function countElement($element = null)
     {
@@ -72,12 +73,12 @@ class Selector
     /**
      * Return the first element given (object)
      *
-     * @param $element
+     * @param string $element
      */
     public function first($element)
     {
         if (is_string($element))
-            return $this->data->$element;
+            return $this->data->$element->__toString();
         else
             return self::prettyError('Element given is not a String!');
     }
@@ -85,18 +86,44 @@ class Selector
     /**
      * Return the elements given (object)
      *
-     * @param $element
+     * @param string $element
      */
     public function get($element)
     {
         if (!is_string($element))
             return self::prettyError('Element given is not a String!');
-       $res = array();
 
-       foreach ($this->data->$element as $child)
-           array_push($res, $child);
+        $res = array();
+        foreach ($this->data->$element as $child)
+            array_push($res, $child->__toString());
+        return $res;
+    }
+
+    /**
+     * Check if a node has childrens
+     *
+     * @param \SimpleXMLElement $node
+     */
+    private function hasChildren($node)
+    {
+        if (sizeof($node) > 0)
+            return true;
+        else
+            return false;
+    }
+
+
+    public function all($element)
+    {
+        $res = array();
+        if (!is_string($element))
+            return self::prettyError('Element given is not a String!');
+
+        foreach ($this->data as $child) {
+            if ($child->getName() === $element)
+                array_push($res, (array)$child);
+        }
 
        return $res;
     }
-    
 }

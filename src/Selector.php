@@ -119,11 +119,15 @@ class Selector
         if (!is_string($element))
             return self::prettyError('Element given is not a String!');
 
-        foreach ($this->data as $child) {
-            if ($child->getName() === $element)
-                array_push($res, (array)$child);
+        // ToDo: Appels récursifs
+        foreach($this->data as $key => $val) {
+            foreach($val as $key2 => $subval) {
+                if ($key2 === $element){
+                    var_dump($subval);
+                }
+            }
+
         }
 
-       return $res;
     }
 }

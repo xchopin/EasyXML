@@ -14,9 +14,9 @@ use Chopin\EasyXML\Selector;
  * @license MIT
  */
 
-$selector = new Selector('file.xml');
+$selector = new Selector('file2.xml');
 
-echo $selector->countElement('book');
+$selector->all('fr');
 /** Success (12)
  * echo $selector->countElement('book');
  *

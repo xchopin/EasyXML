@@ -23,7 +23,7 @@ class Selector
      */
     public function __construct($file)
     {
-        $this->load($file);
+        return $this->load($file);
     }
 
     /**
@@ -36,6 +36,18 @@ class Selector
         $this->file = $file;
         if (!$this->data = @simplexml_load_file($file))
             self::prettyError('XML file was not found!');
+    }
+
+    /**
+     * Let you know if the file was successfully loaded
+     *
+     * @return bool
+     */
+    public function isLoaded()
+    {
+        if ($this->data === false)
+            return false;
+        return true;
     }
 
     /**

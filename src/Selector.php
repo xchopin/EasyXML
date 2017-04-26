@@ -1,5 +1,6 @@
 <?php
 namespace Chopin\EasyXML;
+libxml_use_internal_errors(true);
 
 /**
  * Selector
@@ -10,6 +11,7 @@ namespace Chopin\EasyXML;
  */
 class Selector
 {
+
     protected $file;
 
     protected $data;
@@ -32,8 +34,7 @@ class Selector
     public function load($file)
     {
         $this->file = $file;
-        $this->data = simplexml_load_file($file);
-        if (!$this->data)
+        if (!$this->data = @simplexml_load_file($file))
             self::prettyError('XML file was not found!');
     }
 
